@@ -1,0 +1,48 @@
+[
+    {
+        "caption": "Sheller: File",
+        "command": "sheller",
+        "args": {
+            "command": "sheller_file",
+            "show_menu": true,
+            "show_menu_lable": "Enter your command: "
+        }
+    },
+    {
+        "caption": "Sheller: Project Folder",
+        "command": "sheller",
+        "args": {
+            "command": "sheller_folder",
+            "show_menu": true,
+            "show_menu_lable": "Enter your command: "
+        }
+    },
+    {
+        "caption": "Sheller: Open shell window at File Directory",
+        "command": "sheller",
+        "args": {
+            "command": "sheller_open_shell_file"
+        }
+    },
+    {
+        "caption": "Sheller: Open shell window at Project Directory",
+        "command": "sheller",
+        "args": {
+            "command": "sheller_open_shell_folder"
+        }
+    },
+    {
+        "caption": "Sheller: Reveal File Directory",
+        "command": "sheller",
+        "args": {
+            "command": "sheller_reveal_file"
+        }
+    },
+    {
+        "caption": "Sheller: Reveal Project Directory",
+        "command": "sheller",
+        "args": {
+            "command": "sheller_reveal_folder"
+        }
+    },
+]

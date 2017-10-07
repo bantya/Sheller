@@ -1,0 +1,10 @@
+[
+    {
+        "keys": ["alt+s"],
+        "command": "show_overlay",
+        "args": {
+            "overlay": "command_palette",
+            "text": "Sheller:"
+        }
+    },
+]
