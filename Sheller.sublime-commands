@@ -9,7 +9,7 @@
         }
     },
     {
-        "caption": "Sheller: Project Folder",
+        "caption": "Sheller: Project Root",
         "command": "sheller",
         "args": {
             "command": "sheller_folder",
@@ -25,7 +25,7 @@
         }
     },
     {
-        "caption": "Sheller: Open shell window at Project Directory",
+        "caption": "Sheller: Open shell window at Project Root",
         "command": "sheller",
         "args": {
             "command": "sheller_open_shell_folder"
@@ -39,7 +39,7 @@
         }
     },
     {
-        "caption": "Sheller: Reveal Project Directory",
+        "caption": "Sheller: Reveal Project Root",
         "command": "sheller",
         "args": {
             "command": "sheller_reveal_folder"
