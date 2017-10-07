@@ -34,6 +34,8 @@ class ShellerCommand(sublime_plugin.TextCommand):
 
         file_path = os.path.join(self.PROJECT_PATH, file_name)
 
+        print(file_path)
+
         self.show_menu_label = kwargs.get('show_menu_lable', 'Command: ')
         self.args = []
         self.on_command()
@@ -48,6 +50,8 @@ class ShellerCommand(sublime_plugin.TextCommand):
         self.current_directory = "\\".join(path)
 
     def on_folder (self):
+        self.check_dis_exist()
+
         self.PROJECT_PATH = self.view.window().folders()[0]
 
     def on_file (self, file_name):
@@ -60,6 +64,8 @@ class ShellerCommand(sublime_plugin.TextCommand):
         os.system(command)
 
     def open_shell_folder (self):
+        self.check_dis_exist()
+
         path = self.view.window().folders()[0]
         self.folder_paras(path)
         self.current_directory = path
@@ -78,6 +84,8 @@ class ShellerCommand(sublime_plugin.TextCommand):
         )
 
     def reveal_folder (self):
+        self.check_dis_exist()
+
         self.args = []
         self.view.window().run_command(
             "open_dir",
@@ -90,6 +98,10 @@ class ShellerCommand(sublime_plugin.TextCommand):
     def on_show_menu (self, show_menu):
         self.args.extend(shlex.split(str(show_menu)))
         self.on_done()
+
+    def check_dis_exist(self):
+        if self.view.window().folders() == []:
+            sublime.error_message("Project Root Direcoty not found!")
 
     def on_done (self):
         if os.name != 'posix':
