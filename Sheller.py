@@ -50,7 +50,7 @@ class ShellerCommand(sublime_plugin.TextCommand):
         self.current_directory = "\\".join(path)
 
     def on_folder (self):
-        self.check_dis_exist()
+        self.check_dir_exist()
 
         self.PROJECT_PATH = self.view.window().folders()[0]
 
@@ -64,7 +64,7 @@ class ShellerCommand(sublime_plugin.TextCommand):
         os.system(command)
 
     def open_shell_folder (self):
-        self.check_dis_exist()
+        self.check_dir_exist()
 
         path = self.view.window().folders()[0]
         self.folder_paras(path)
@@ -84,7 +84,7 @@ class ShellerCommand(sublime_plugin.TextCommand):
         )
 
     def reveal_folder (self):
-        self.check_dis_exist()
+        self.check_dir_exist()
 
         self.args = []
         self.view.window().run_command(
@@ -99,7 +99,7 @@ class ShellerCommand(sublime_plugin.TextCommand):
         self.args.extend(shlex.split(str(show_menu)))
         self.on_done()
 
-    def check_dis_exist(self):
+    def check_dir_exist(self):
         if self.view.window().folders() == []:
             sublime.error_message("Project Root Direcoty not found!")
 
