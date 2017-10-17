@@ -46,6 +46,7 @@ class ShellerCommand(sublime_plugin.TextCommand):
     def folder_paras (self, path):
         path = path.split("\\")
         self.current_drive = path[0]
+
         path.pop()
         self.current_directory = "\\".join(path)
 
@@ -54,43 +55,61 @@ class ShellerCommand(sublime_plugin.TextCommand):
 
         self.PROJECT_PATH = self.view.window().folders()[0]
 
+        self.show_status(self.PROJECT_PATH)
+
     def on_file (self, file_name):
         self.folder_paras(file_name)
+
         self.PROJECT_PATH = self.current_directory
+
+        self.show_status(self.PROJECT_PATH)
 
     def open_shell_file (self, file_name):
         self.folder_paras(file_name)
-        command = "cd " + self.current_directory + " & " + self.current_drive + " & start cmd"
+
+        directory = self.current_directory
+        command = "cd " + directory + " & " + self.current_drive + " & start cmd"
+
         os.system(command)
+        self.show_status(directory)
 
     def open_shell_folder (self):
         self.check_dir_exist()
 
         path = self.view.window().folders()[0]
+
         self.folder_paras(path)
         self.current_directory = path
+
         command = "cd " + self.current_directory + " & " + self.current_drive + " & start cmd"
+
         os.system(command)
+        self.show_status(path)
 
     def reveal_file (self, file_name):
         self.folder_paras(file_name)
 
+        directory = self.current_directory
         self.args = []
+
         self.view.window().run_command(
-            "open_dir",
-            {
-                "dir": self.current_directory
+            "open_dir", {
+                "dir": directory
             }
         )
+        self.show_status(directory)
 
     def reveal_folder (self):
         self.check_dir_exist()
 
+        directory = self.view.window().folders()[0]
         self.args = []
+
         self.view.window().run_command(
             "open_dir",
-            {"dir": self.view.window().folders()[0]}
+            {"dir": directory}
         )
+        self.show_status(directory)
 
     def on_command (self):
         self.view.window().show_input_panel(self.show_menu_label, '', self.on_show_menu, None, None)
@@ -99,9 +118,12 @@ class ShellerCommand(sublime_plugin.TextCommand):
         self.args.extend(shlex.split(str(show_menu)))
         self.on_done()
 
+    def show_status(self, message):
+        sublime.status_message('Directory: ' + message + os.sep)
+
     def check_dir_exist(self):
         if self.view.window().folders() == []:
-            sublime.error_message("Project Root Direcoty not found!")
+            sublime.error_message("Project root directory not found!")
 
     def on_done (self):
         if os.name != 'posix':
