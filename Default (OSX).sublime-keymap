@@ -1,6 +1,6 @@
 [
     {
-        "keys": ["alt+s"],
+        "keys": ["option+s"],
         "command": "show_overlay",
         "args": {
             "overlay": "command_palette",
