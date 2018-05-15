@@ -1,4 +1,4 @@
-# Sheller
+# 🐚 Sheller
 A brand new package to work with Command Prompt without using Command Prompt
 
 This package provides easy ways to work with the shell within the Sublime Text editor.

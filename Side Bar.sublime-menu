@@ -1,0 +1,54 @@
+[
+    {
+        "caption": "🐚 Sheller ->",
+        "children":
+        [
+            {
+                "caption": "File",
+                "command": "sheller",
+                "args": {
+                    "command": "sheller_file",
+                    "show_menu": true,
+                    "show_menu_lable": "Enter your command: "
+                }
+            },
+            {
+                "caption": "Project Root",
+                "command": "sheller",
+                "args": {
+                    "command": "sheller_folder",
+                    "show_menu": true,
+                    "show_menu_lable": "Enter your command: "
+                }
+            },
+            {
+                "caption": "Open shell window at File Directory",
+                "command": "sheller",
+                "args": {
+                    "command": "sheller_open_shell_file"
+                }
+            },
+            {
+                "caption": "Open shell window at Project Root",
+                "command": "sheller",
+                "args": {
+                    "command": "sheller_open_shell_folder"
+                }
+            },
+            {
+                "caption": "Reveal File Directory",
+                "command": "sheller",
+                "args": {
+                    "command": "sheller_reveal_file"
+                }
+            },
+            {
+                "caption": "Reveal Project Root",
+                "command": "sheller",
+                "args": {
+                    "command": "sheller_reveal_folder"
+                }
+            },
+        ]
+    },
+]
