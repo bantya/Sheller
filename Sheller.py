@@ -1,8 +1,8 @@
-import os
-import shlex
+import sublime_plugin
 import subprocess
 import sublime
-import sublime_plugin
+import shlex
+import os
 
 class ShellerCommand(sublime_plugin.TextCommand):
     def __init__ (self, *args, **kwargs):
@@ -34,13 +34,11 @@ class ShellerCommand(sublime_plugin.TextCommand):
 
         file_path = os.path.join(self.PROJECT_PATH, file_name)
 
-        print(file_path)
-
         self.show_menu_label = kwargs.get('show_menu_lable', 'Command: ')
         self.args = []
         self.on_command()
 
-        if not os.path.isfile("%s" % file_name):
+        if not os.path.isfile(file_name):
             self.PROJECT_PATH = self.view.window().folders()[0]
 
     def folder_paras (self, path):
@@ -48,6 +46,7 @@ class ShellerCommand(sublime_plugin.TextCommand):
         self.current_drive = path[0]
 
         path.pop()
+
         self.current_directory = "\\".join(path)
 
     def on_folder (self):
@@ -79,8 +78,8 @@ class ShellerCommand(sublime_plugin.TextCommand):
         path = self.view.window().folders()[0]
 
         self.folder_paras(path)
-        self.current_directory = path
 
+        self.current_directory = path
         command = "cd " + self.current_directory + " & " + self.current_drive + " & start cmd"
 
         os.system(command)
@@ -112,10 +111,14 @@ class ShellerCommand(sublime_plugin.TextCommand):
         self.show_status(directory)
 
     def on_command (self):
-        self.view.window().show_input_panel(self.show_menu_label, '', self.on_show_menu, None, None)
+        self.view.window().show_input_panel(
+            self.show_menu_label, '', self.on_show_menu, None, None
+        )
 
     def on_show_menu (self, show_menu):
-        self.args.extend(shlex.split(str(show_menu)))
+        self.args.extend(
+            shlex.split(str(show_menu))
+        )
         self.on_done()
 
     def show_status(self, message):
@@ -131,9 +134,9 @@ class ShellerCommand(sublime_plugin.TextCommand):
 
         try:
             self.view.window().run_command("exec", {
-                "cmd": self.args,
-                "shell": os.name == 'nt',
-                "working_dir": self.PROJECT_PATH
+                    "cmd": self.args,
+                    "shell": os.name == 'nt',
+                    "working_dir": self.PROJECT_PATH
                 }
             )
             sublime.status_message('Command executed succesfully!')
