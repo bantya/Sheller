@@ -37,5 +37,7 @@ The default keybinding is <kbd>alt+s</kbd>, but you may change it according to y
 
 
 ### Any Suggestions? Want to contribute?
-If you have any suggestions regarding to the package or want to contribute then please open a pull request!
+This project is **MIT license**d.
+
+If you have any suggestions regarding to the package or want to contribute then please feel free to do so.
 
